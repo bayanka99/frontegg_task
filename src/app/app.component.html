@@ -1,0 +1,36 @@
+
+
+
+    <div class="content" role="main">
+      <div *ngIf="!isLoading">
+        <div *ngIf="user; else loggedOut">
+          <div>
+            <img [src]="user?.profilePictureUrl" [alt]="user?.name" />
+            <div>User name: {{ user?.name }}</div>
+            <button (click)="logOut()">Log out</button>
+            <button (click)="openSettings()">Settings</button>
+          </div>
+        </div>
+        <ng-template #loggedOut>
+          <div>
+            <!-- Uncomment when not using auto-redirect -->
+            <button (click)="loginWithRedirect()">Login with redirect</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+  
+
+
+
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+

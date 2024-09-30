@@ -13,6 +13,9 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoading = true;
   loadingSubscription: Subscription;
   user?: any;
+  selectedTenantId?: string;
+  tenants: any[] = [];
+
 
 
   constructor(private fronteggAuthService: FronteggAuthService, private fronteggAppService: FronteggAppService) {
@@ -21,13 +24,33 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.fronteggAuthService?.user$.subscribe((user) => {
       this.user = user
+      this.loadTenants();
+
     })
   }
+
+  loadTenants(): void {
+    if (this.user?.tenantIds) {
+      this.tenants = this.user.tenantIds
+    }
+  }
+
+  switchTenant(): void {
+    if (this.selectedTenantId) {
+      
+      this.fronteggAuthService.switchTenant({ tenantId: this.selectedTenantId })
+    }
+  }
+  
+
 
   openSettings():void{
         this.fronteggAppService?.showAdminPortal()
 
   }
+
+
+
 
   loginWithRedirect(): void {
     this.fronteggAuthService.loginWithRedirect();

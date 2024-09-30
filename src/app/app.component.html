@@ -9,7 +9,12 @@
             <div>User name: {{ user?.name }}</div>
             <button (click)="logOut()">Log out</button>
             <button (click)="openSettings()">Settings</button>
+            <label for="tenants">Select a tenant:</label>
+            <select id="tenants"  [(ngModel)]="selectedTenantId" (change)="switchTenant()" >
+              <option *ngFor="let tenant of tenants" [value]="tenant">{{ tenant }}</option>
+            </select>
           </div>
+          
         </div>
         <ng-template #loggedOut>
           <div>
